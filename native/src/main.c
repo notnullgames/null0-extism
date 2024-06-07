@@ -71,7 +71,7 @@ int main(int argc, char *argv[]) {
       extism_plugin_new(wasmBytes, bufsize, functions, 1, true, &errmsg);
   free(wasmBytes);
 
-  extism_plugin_call(plugin, "_start", NULL, 0);
+  extism_plugin_call(plugin, "load", NULL, 0);
 
   if (plugin == NULL) {
     fprintf(stderr, "ERROR: %s\n", errmsg);

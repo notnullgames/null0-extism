@@ -1,23 +1,23 @@
-# C compiler and target
-CC=clang
-TARGET=wasm32-unknown-unknown
+TARGET=wasm32-wasi
+WASI_SDK_PREFIX=/opt/wasi-sdk
+CC=$(WASI_SDK_PREFIX)/bin/clang
 
 # C compiler and linker flags
-CFLAGS=-target $(TARGET) -nostdlib
+CFLAGS=-target $(TARGET) -I../../../pdk/c -I../
 LDFLAGS=-Wl,--no-entry -mexec-model=reactor
 
 # List source files
-SRC=src/plugin.c
+SRC=src/main.c
 OBJ=$(SRC:.c=.o)
 
-build: $(OBJ)
-	$(CC) $(CFLAGS) $(LDFLAGS) $(OBJ) -o plugin.wasm -Wl,--export=hello
+main.wasm: $(OBJ)
+	$(CC) $(CFLAGS) $(LDFLAGS) $(OBJ) -o $@
 
-test: build
-	extism call plugin.wasm hello
-
-%.o: %.c
+ %.o: %.c
 	$(CC) -c $(CFLAGS) $< -o $@
 
+test: main.wasm
+	extism call main.wasm load
+
 clean:
-	rm -f $(OBJ)
+	rm -f $(OBJ) main.wasm

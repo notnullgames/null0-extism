@@ -1,2 +1,3 @@
-plugin.wasm
+main.wasm
 *.o
+.DS_Store

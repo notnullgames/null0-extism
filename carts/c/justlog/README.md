@@ -1,5 +1,3 @@
-# Extism C PDK Plugin
+This cart will just log (using `trace`.)
 
-
-See more documentation at https://github.com/extism/c-pdk and
-[join us on Discord](https://extism.org/discord) for more help.
+Eventually, I will setup a whole SDK for this (and put in docker) but for now, you need pdk/c (extism submodule) and the wasi-sdk installed (`/opt/wasi-sdk`, by default.)
