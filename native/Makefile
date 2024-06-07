@@ -1,5 +1,5 @@
 null0: src/*.c
-	clang -lm /usr/local/lib/libextism.a -o $@ $?
+	clang -I/usr/local/include -lm /usr/local/lib/libextism.a -o $@ $?
 
 .PHONY: clean
 
