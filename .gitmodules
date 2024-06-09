@@ -1,3 +1,0 @@
-[submodule "pdk/c"]
-	path = pdk/c
-	url = https://github.com/extism/c-pdk
